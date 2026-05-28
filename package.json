@@ -1,0 +1,26 @@
+{
+  "name": "@scmjf/select-component",
+  "version": "1.0.0",
+  "description": "Componente React de select reutilizavel para aplicacoes da Santa Casa.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./styles.css": "./src/scmjf-select.css"
+  },
+  "files": [
+    "src",
+    "README.MD"
+  ],
+  "sideEffects": [
+    "./src/scmjf-select.css"
+  ],
+  "scripts": {
+    "check": "node --check src/ScmjfSelect.js && node --check src/index.js"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  }
+}

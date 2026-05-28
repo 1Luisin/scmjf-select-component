@@ -1,0 +1,297 @@
+/* Santa Casa de Misericordia de Juiz de Fora reusable select */
+.scmjf-select {
+  --scmjf-select-accent: #c21028;
+  --scmjf-select-accent-strong: #7f1d2d;
+  --scmjf-select-text: #68232d;
+  --scmjf-select-muted: #6f555a;
+  --scmjf-select-surface: #ffffff;
+  --scmjf-select-surface-soft: #fff8f9;
+  --scmjf-select-option-hover: #f8dce1;
+  --scmjf-select-border: rgba(194, 16, 40, 0.28);
+  --scmjf-select-border-strong: rgba(194, 16, 40, 0.55);
+  --scmjf-select-focus: rgba(194, 16, 40, 0.12);
+  --scmjf-select-shadow: 0 10px 24px rgba(120, 28, 42, 0.08);
+  --scmjf-select-popover-shadow:
+    0 18px 45px rgba(120, 28, 42, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 170px;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+.scmjf-select-trigger {
+  width: 100%;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 14px;
+  border: 1px solid var(--scmjf-select-border);
+  border-radius: 8px;
+  background: var(--scmjf-select-surface);
+  color: var(--scmjf-select-text);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  outline: none;
+  box-shadow: var(--scmjf-select-shadow);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.scmjf-select-trigger:hover {
+  border-color: var(--scmjf-select-border-strong);
+  background: var(--scmjf-select-surface-soft);
+}
+
+.scmjf-select-trigger:focus,
+.scmjf-select-trigger:focus-visible,
+.scmjf-select-trigger[aria-expanded="true"] {
+  border-color: var(--scmjf-select-border-strong);
+  box-shadow:
+    0 0 0 2px var(--scmjf-select-focus),
+    0 10px 24px rgba(120, 28, 42, 0.14);
+}
+
+.scmjf-select-trigger:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.scmjf-select-value,
+.scmjf-select-placeholder {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--scmjf-select-text);
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scmjf-select-placeholder {
+  color: var(--scmjf-select-muted);
+  font-weight: 500;
+}
+
+.scmjf-select-arrow {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: var(--scmjf-select-text);
+  transition: transform 0.18s ease;
+}
+
+.scmjf-select-trigger[aria-expanded="true"] .scmjf-select-arrow {
+  transform: rotate(180deg);
+}
+
+.scmjf-select-required-field {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scmjf-select-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 10000;
+  width: max(100%, 220px);
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow: hidden;
+  padding: 6px;
+  border: 1px solid rgba(194, 16, 40, 0.16);
+  border-radius: 10px;
+  background: var(--scmjf-select-surface);
+  color: #342126;
+  box-shadow: var(--scmjf-select-popover-shadow);
+  animation: scmjfSelectIn 0.14s ease-out;
+}
+
+.scmjf-select-search {
+  width: 100%;
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid rgba(194, 16, 40, 0.2);
+  border-radius: 8px;
+  outline: none;
+  background: var(--scmjf-select-surface-soft);
+  color: var(--scmjf-select-text);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.scmjf-select-search:focus {
+  border-color: var(--scmjf-select-border-strong);
+  box-shadow: 0 0 0 2px rgba(194, 16, 40, 0.1);
+}
+
+.scmjf-select-search::placeholder {
+  color: #9a7378;
+  font-weight: 600;
+}
+
+.scmjf-select-options {
+  max-height: 238px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.scmjf-select-empty {
+  padding: 12px 10px;
+  color: #8f646b;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.scmjf-select-option {
+  width: 100%;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #3b2a2e;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.scmjf-select-option:hover,
+.scmjf-select-option:focus-visible {
+  background: var(--scmjf-select-option-hover);
+  color: var(--scmjf-select-accent-strong);
+  outline: none;
+}
+
+.scmjf-select-option.is-selected {
+  background: var(--scmjf-select-accent);
+  color: #ffffff;
+}
+
+.scmjf-select-option.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.scmjf-select-option svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+@keyframes scmjfSelectIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 560px) {
+  .scmjf-select-popover {
+    width: min(100%, calc(100vw - 32px));
+  }
+}
+
+body.theme-dark .scmjf-select,
+[data-theme="dark"] .scmjf-select,
+.theme-dark .scmjf-select {
+  --scmjf-select-text: #e5e7eb;
+  --scmjf-select-muted: #aeb6c2;
+  --scmjf-select-surface: #16181b;
+  --scmjf-select-surface-soft: rgba(255, 255, 255, 0.06);
+  --scmjf-select-option-hover: rgba(255, 110, 120, 0.16);
+  --scmjf-select-border: rgba(255, 255, 255, 0.16);
+  --scmjf-select-border-strong: rgba(255, 110, 120, 0.46);
+  --scmjf-select-focus: rgba(255, 110, 120, 0.1);
+  --scmjf-select-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  --scmjf-select-popover-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+body.theme-dark .scmjf-select-trigger:hover,
+[data-theme="dark"] .scmjf-select-trigger:hover,
+.theme-dark .scmjf-select-trigger:hover,
+body.theme-dark .scmjf-select-trigger[aria-expanded="true"],
+[data-theme="dark"] .scmjf-select-trigger[aria-expanded="true"],
+.theme-dark .scmjf-select-trigger[aria-expanded="true"] {
+  background: rgba(31, 36, 42, 0.98);
+}
+
+body.theme-dark .scmjf-select-arrow,
+[data-theme="dark"] .scmjf-select-arrow,
+.theme-dark .scmjf-select-arrow {
+  fill: #f0a8b0;
+}
+
+body.theme-dark .scmjf-select-search,
+[data-theme="dark"] .scmjf-select-search,
+.theme-dark .scmjf-select-search {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e5e7eb;
+}
+
+body.theme-dark .scmjf-select-search:focus,
+[data-theme="dark"] .scmjf-select-search:focus,
+.theme-dark .scmjf-select-search:focus {
+  border-color: rgba(255, 110, 120, 0.42);
+  box-shadow: 0 0 0 2px rgba(255, 110, 120, 0.1);
+}
+
+body.theme-dark .scmjf-select-search::placeholder,
+[data-theme="dark"] .scmjf-select-search::placeholder,
+.theme-dark .scmjf-select-search::placeholder {
+  color: #aeb6c2;
+}
+
+body.theme-dark .scmjf-select-popover,
+[data-theme="dark"] .scmjf-select-popover,
+.theme-dark .scmjf-select-popover {
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e5e7eb;
+}
+
+body.theme-dark .scmjf-select-option,
+[data-theme="dark"] .scmjf-select-option,
+.theme-dark .scmjf-select-option {
+  color: #e5e7eb;
+}
+
+body.theme-dark .scmjf-select-option:hover,
+body.theme-dark .scmjf-select-option:focus-visible,
+[data-theme="dark"] .scmjf-select-option:hover,
+[data-theme="dark"] .scmjf-select-option:focus-visible,
+.theme-dark .scmjf-select-option:hover,
+.theme-dark .scmjf-select-option:focus-visible {
+  color: #fff5f6;
+}
